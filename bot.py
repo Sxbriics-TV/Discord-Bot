@@ -1,13 +1,18 @@
 import discord
 import random
 import json
+import os
 from discord.ext import commands
 from discord import app_commands
 from ticket_system import TicketView, CloseView, TicketSetupModal
+from dotenv import load_dotenv
 
 intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
+
+load_dotenv()
+TOKEN = os.getenv("DISCORD_TOKEN")
 
 bot = commands.Bot(command_prefix="/", intents=intents)
 
@@ -212,4 +217,4 @@ async def würfel(interaction: discord.Interaction):
 async def echo(interaction: discord.Interaction, nachricht: str):
     await interaction.response.send_message(nachricht)
 
-bot.run("MTU0OTg2MDkwNjEyMzY2MTQ2Mw.GyyB8x.D2WuhvUVGjjCAhT1nFY65Scdtm-IGVJnNde2JQ")
+bot.run(TOKEN)
